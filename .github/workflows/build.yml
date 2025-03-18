@@ -7,7 +7,7 @@ jobs:
   update-bridgecrew:
     runs-on: [self-hosted, public, linux, x64]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
       - name: update release
         run: |
           # update bridgecrew version
@@ -21,11 +21,11 @@ jobs:
           fi
           sed -i'.bkp' -e 's/docker:\/\/bridgecrew\/bridgecrew.*'\''/docker:\/\/bridgecrew\/bridgecrew:'"${version}"''\''/g' action.yml
           rm action.yml.bkp
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@3ea6ae190baf489ba007f7c92608f33ce20ef04a # v4
         with:
           commit_message: Bump bridgecrew container version
       - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.17.2
+        uses: anothrNick/github-tag-action@31c05bec812d1a339edacdf9fbf5b068691a65b2 # 1.17.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
